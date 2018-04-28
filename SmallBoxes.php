@@ -1,46 +1,44 @@
 <?php
-	/**
-	 * @package Spiro Small Boxes
-	 * @author Spiro
-	 * @version 0.0.3
-	 * @filelocation: wp-content/plugins/spiro-small-boxes/spiro-small-boxes.php
-	 */
-	/*
-		Plugin Name: Spiro Small Boxes
-		Description: Add content-type small-boxes, and shortcode
-		Version: 0.0.3
-		Author: Spiro
-		Author URI: https://spiro.se
-		Text Domain: spiro_small_boxes
-		Domain Path: /lang
-	*/
 
-	class SpiroSmallBoxes
+	namespace SpiroAB;
+
+	/**
+	 * Class SmallBoxes
+	 * @package SpiroAB
+	 */
+	class SmallBoxes
 	{
+		/**
+		 * SmallBoxes constructor.
+		 * Register hooks and shortcodes
+		 */
 		public function __construct()
 		{
 			add_action( 'init', [$this, 'init'] );
 			add_shortcode( 'smallboxes', [$this, 'shortcode'] );
 		}
 
+		/**
+		 * Register content-type small-boxes
+		 */
 		public function init()
 		{
-			load_plugin_textdomain('spiro_small_boxes', FALSE, dirname(plugin_basename(__FILE__)) . '/lang/');
+			load_plugin_textdomain('small_boxes', FALSE, dirname(plugin_basename(__FILE__)) . '/lang/');
 			register_post_type(
 				'small-boxes',
 				[
 					'labels' => [
-						'name' => __('Small boxes', 'spiro_small_boxes'),
-						'singular_name' => __('Small box', 'spiro_small_boxes'),
-						'add_new' => __('Create', 'spiro_small_boxes'),
-						'add_new_item' => __('Create small box', 'spiro_small_boxes'),
-						'edit_item' => __('Edit small box', 'spiro_small_boxes'),
-						'new_item' => __('Create small box', 'spiro_small_boxes'),
-						'all_items' => __('All small boxes', 'spiro_small_boxes'),
-						'view_item' => __('Show small box', 'spiro_small_boxes'),
-						'search_items' => __('Search small box', 'spiro_small_boxes'),
-						'not_found' => __('small box not found', 'spiro_small_boxes'),
-						'menu_name' => __('Small boxes', 'spiro_small_boxes'),
+						'name' => __('Small boxes', 'small_boxes'),
+						'singular_name' => __('Small box', 'small_boxes'),
+						'add_new' => __('Create', 'small_boxes'),
+						'add_new_item' => __('Create small box', 'small_boxes'),
+						'edit_item' => __('Edit small box', 'small_boxes'),
+						'new_item' => __('Create small box', 'small_boxes'),
+						'all_items' => __('All small boxes', 'small_boxes'),
+						'view_item' => __('Show small box', 'small_boxes'),
+						'search_items' => __('Search small box', 'small_boxes'),
+						'not_found' => __('small box not found', 'small_boxes'),
+						'menu_name' => __('Small boxes', 'small_boxes'),
 					],
 					'public' => TRUE,
 					'capability_type' => 'page',
@@ -62,6 +60,13 @@
 			);
 		}
 
+		/**
+		 * shortcode smallboxes
+		 *
+		 * @param string[] $attributes class, cat: category-id or category-slug
+		 *
+		 * @return string
+		 */
 		public function shortcode($attributes)
 		{
 			$default_attributes = [
@@ -104,7 +109,7 @@
 
 			do_action( 'page_part_list', $category, 'small-boxes');
 
-			$query = new WP_Query( $filters );
+			$query = new \WP_Query( $filters );
 
 			$classes = implode(' ', $classes);
 			$html = [];
@@ -164,6 +169,3 @@
 			return implode(PHP_EOL, $html);
 		}
 	}
-	
-	new SpiroSmallBoxes();
-
