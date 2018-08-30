@@ -16,5 +16,6 @@
 	*/
 
 	namespace SpiroAB;
+	require_once __DIR__ . '/SmallBoxes.php';
 	new SmallBoxes();
 
