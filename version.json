@@ -1,7 +1,7 @@
 {
   "name": "Small Boxes",
   "slug": "small-boxes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Puggan Sundragon <puggan@spiro.se>",
   "description": "Add a simple content-type, for listing a category of them anywhere",
   "requires": "4.9",
