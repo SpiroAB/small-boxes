@@ -155,7 +155,7 @@
 				}
 
 				if($edit_url) {
-					$html[] = '<a class="inline_edit_button" href="' . htmlentities($edit_url, null, null, null) . '"><i class="fa fa-edit"></i></a>';
+					$html[] = '<a class="inline_edit_button" href="' . htmlentities($edit_url, 0, null, false) . '"><i class="fa fa-edit"></i></a>';
 				}
 
 				$html[] = apply_filters('the_content', $current_post->post_content);
