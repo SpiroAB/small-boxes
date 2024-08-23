@@ -1,9 +1,9 @@
 {
-  "name": "SpiroAB/small-boxes",
+  "name": "spiroab/small-boxes",
   "description": "Add a simple content-type, for listing a category of them anywhere",
   "type": "wordpress-plugin",
   "require": {
-    "composer/installers": "~1.0",
-    "SpiroAB/wp_version_tracker": "~1.0"
+    "composer/installers": "^1 || ^2",
+    "spiroab/wp_version_tracker": "~1.0"
   }
 }
